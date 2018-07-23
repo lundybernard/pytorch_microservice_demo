@@ -1,1 +1,1 @@
-# torch_microservice_demo
+# pytorch_microservice_demo
