@@ -1,5 +1,5 @@
 from unittest import TestCase
-from time import time
+import time
 import requests
 from compose.cli.main import TopLevelCommand, project_from_options
 
