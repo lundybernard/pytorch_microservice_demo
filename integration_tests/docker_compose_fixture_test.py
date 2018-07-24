@@ -7,4 +7,3 @@ class DockerComposeTest(TestCase):
 
     def test_(self):
         dc = DockerCompose()
-        #self.assertEqual(dc, 'something')
