@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from pytorch_server.pytorch_server import hello
+from pytorch_server.services import cuda_is_available
 
 
-class WebUITest(TestCase):
-    def test_(self):
-        self.assertTrue(hello)
+class ServicesTest(TestCase):
+    def test_cuda_is_available(self):
+        self.assertTrue(cuda_is_available())
