@@ -22,6 +22,6 @@ WORKDIR /src
 RUN pip install -r requirements.txt
 # Run unittests, fails the build on failing tests
 # currently disabled, because cuda_is_available fails durring the build process
-#RUN python -m unittest discover pytorch_server.tests -p '*_test.py'
+RUN python -m unittest discover pytorch_server.tests -p '*_test.py'
 
 CMD ["python", "pytorch_server/pytorch_server.py"]
