@@ -1,0 +1,9 @@
+version: '2.3'
+services:
+  web:
+    runtime: nvidia
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/src  # Override src with local dir in dev

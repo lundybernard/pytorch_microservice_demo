@@ -18,6 +18,7 @@ class DockerCompose(object):
     def __init__(self, path='./'):
         path = './'  # Path to docker-compose directory
         self.options = {
+            "--file": ['docker-compose.dev.yaml', ],
             "--no-deps": False,
             "--abort-on-container-exit": False,
             "SERVICE": "",
@@ -42,7 +43,7 @@ class DockerCompose(object):
 
     def up(self, **kwargs):
         self.cli.up(self.options)
-        time.sleep(1)  # wait for the server to be ready
+        time.sleep(0.5)  # wait for the server to be ready
 
     def down(self):
         self.cli.down(self.options)
