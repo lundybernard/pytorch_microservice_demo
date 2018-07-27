@@ -13,6 +13,11 @@ pytorch
 ## Dev notes
 pip install docker-compose (not in conda repositories)
 
+### TODO:
+create performance tests, and figure out how to perf-test differences between versions
+
+Deploy to GCP, and verify GPU acceleration
+
 ## Run Integration tests
 
 rebuild local containers
