@@ -20,8 +20,10 @@ ADD . /src
 WORKDIR /src
 
 RUN pip install -r requirements.txt
+
 # Run unittests, fails the build on failing tests
-# currently disabled, because cuda_is_available fails durring the build process
+# WARNING! cuda is not available durring the build process
+# Tests must work without cuda, or be disabled when cuda is unavailable.
 RUN python -m unittest discover pytorch_server.tests -p '*_test.py'
 
 CMD ["python", "pytorch_server/pytorch_server.py"]

@@ -13,7 +13,6 @@ class ServicesTest(TestCase):
         else:
             self.assertEqual(cuda_is_available(), 'False')
 
-
     def test_global_cuda_flag(self):
         if cuda.is_available():
             self.assertTrue(CUDA_ENABLED)

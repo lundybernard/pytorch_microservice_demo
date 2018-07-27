@@ -7,3 +7,4 @@ class DockerComposeTest(TestCase):
 
     def test_(self):
         dc = DockerCompose()
+        self.assertIsInstance(dc, DockerCompose)
