@@ -1,6 +1,6 @@
 from flask import Flask, request
 
-from services import cuda_is_available
+from .services import cuda_is_available
 
 app = Flask(__name__)
 

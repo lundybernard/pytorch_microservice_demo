@@ -84,6 +84,24 @@ class PytorchCLI(object):
         )
         hello.set_defaults(func=self.hello)
 
+        # start args
+        start = commands.add_parser(
+            'start',
+            description='start the web server',
+            help='for details use start --help',
+        )
+        start.set_defaults(func=self.start)
+        start.add_argument(
+            '-H', '--host', dest='host',
+            default='0.0.0.0',
+            help='host ip on which the service will be made available',
+        )
+        start.add_argument(
+            '-d', '--debug', dest='debug',
+            default=True,
+            help='run web service with debug level output'
+        )
+
         # cuda_is_available args
         cuda_is_available = commands.add_parser(
             'cuda_is_available',
@@ -117,6 +135,10 @@ class PytorchCLI(object):
             log.setLevel(args.loglevel)
         else:
             log.setLevel(logging.ERROR)
+
+    def start(self, args):
+        from pytorch_server.pytorch_server import app
+        app.run(host="0.0.0.0", debug=True)
 
     def cuda_is_available(self, args):
         print(cuda_is_available())
