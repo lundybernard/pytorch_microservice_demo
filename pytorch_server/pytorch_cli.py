@@ -2,7 +2,7 @@ import argparse
 import logging
 from logging.config import dictConfig
 
-from pytorch_server.services import cuda_is_available
+from .services import cuda_is_available
 
 
 # === LOGGING === #
@@ -94,6 +94,7 @@ class PytorchCLI(object):
         start.add_argument(
             '-H', '--host', dest='host',
             default='0.0.0.0',
+            #required=True,
             help='host ip on which the service will be made available',
         )
         start.add_argument(
@@ -137,7 +138,8 @@ class PytorchCLI(object):
             log.setLevel(logging.ERROR)
 
     def start(self, args):
-        from pytorch_server.pytorch_server import app
+        #from pytorch_server.pytorch_server import app
+        from .pytorch_server import app
         app.run(host="0.0.0.0", debug=True)
 
     def cuda_is_available(self, args):

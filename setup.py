@@ -13,8 +13,9 @@ from setuptools import setup, find_packages
 from pytorch_server._version import __version__
 
 # Get the long description from the relevant file
-with open('DESCRIPTION.rst') as f:
-    long_description = f.read()
+#with open('DESCRIPTION.rst') as f:
+#    long_description = f.read()
+long_description = 'WRITE ME!'
 
 
 setup(

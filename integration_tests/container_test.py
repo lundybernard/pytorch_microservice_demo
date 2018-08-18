@@ -1,20 +1,24 @@
 from unittest import TestCase
-import requests
+#import requests
+import time
 
 from .docker_compose_fixture import DockerCompose
 
-PT_SVC_ADDR = 'http://0.0.0.0:5000/'
+from .service_test import CommonAPITest
 
 
-class DockerComposeIntegrationTests(TestCase):
+class DockerComposeIntegrationTests(TestCase, CommonAPITest):
 
     def setUp(self):
+        self.service_address = 'http://0.0.0.0:5000/'
         self.dc = DockerCompose()
         self.dc.up()
+        time.sleep(0.5)
 
     def tearDown(self):
         self.dc.down()
 
+    '''
     def test_compose_webservice_exists(self):
         out = requests.get(PT_SVC_ADDR)
         self.assertEqual(out.text, 'Hello World!\n')
@@ -34,3 +38,4 @@ class DockerComposeIntegrationTests(TestCase):
             params={'name': 'alice'}
         )
         self.assertEqual(out.text, 'Hello alice!\n')
+    '''

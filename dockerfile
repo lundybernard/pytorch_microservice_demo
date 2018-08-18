@@ -26,4 +26,6 @@ RUN pip install -r requirements.txt
 # Tests must work without cuda, or be disabled when cuda is unavailable.
 RUN python -m unittest discover pytorch_server.tests -p '*_test.py'
 
-CMD ["python", "pytorch_server/pytorch_server.py"]
+RUN python setup.py install
+#CMD ["python", "pytorch_server/pytorch_server.py"]
+CMD ["pytorch_server", "start"]
