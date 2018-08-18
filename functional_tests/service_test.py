@@ -32,7 +32,7 @@ class CommonAPITest(object):
         self.assertEqual(out.text, 'Hello alice!\n')
 
 
-class ServiceIntegrationTest(TestCase, CommonAPITest):
+class ServiceFunctionalTest(TestCase, CommonAPITest):
 
     def setUp(self):
         self.service_address = 'http://0.0.0.0:5000/'

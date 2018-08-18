@@ -26,7 +26,7 @@ install in developer mode from source
 python setup.py develop
 ```
 
-## Run Integration tests
+## Run Functional tests
 
 ### Manually
 start the web server manually
@@ -38,8 +38,8 @@ python pytorch_server/pytorch_server.py
 run tests against the web server
 
 ```
-python -m unittest integration_tests/service_test.py
-pytest integration_tests/service_test.py
+python -m unittest functional_tests/service_test.py
+pytest functional_tests/service_test.py
 ```
 
 ### Run the service and tests via CLI
@@ -60,7 +60,7 @@ Run functional tests
 
 ```
 pytorch_cli test service
-pytest integration_tests/service_test.py
+pytest functional_tests/service_test.py
 ```
 
 ### Run Container tests

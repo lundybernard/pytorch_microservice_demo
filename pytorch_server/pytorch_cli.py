@@ -84,6 +84,14 @@ class PytorchCLI(object):
         )
         hello.set_defaults(func=self.hello)
 
+        # cuda_is_available args
+        cuda_is_available = commands.add_parser(
+            'cuda_is_available',
+            description='execute command cuda_is_available',
+            help='for details use cuda_is_available --help'
+        )
+        cuda_is_available.set_defaults(func=self.cuda_is_available)
+
         # start args
         start = commands.add_parser(
             'start',
@@ -98,18 +106,33 @@ class PytorchCLI(object):
             help='host ip on which the service will be made available',
         )
         start.add_argument(
+            '-P', '--port', dest='port',
+            default='5000',
+            help='port on which the service will be made available'
+        )
+        start.add_argument(
             '-d', '--debug', dest='debug',
             default=True,
             help='run web service with debug level output'
         )
 
-        # cuda_is_available args
-        cuda_is_available = commands.add_parser(
-            'cuda_is_available',
-            description='execute command cuda_is_available',
-            help='for details use cuda_is_available --help'
+        # test args
+        test = commands.add_parser(
+            'test',
+            description='run functional tests',
+            help='for details use test --help'
         )
-        cuda_is_available.set_defaults(func=self.cuda_is_available)
+        test.set_defaults(func=self.test)
+        test.add_argument(
+            '-H', '--host', dest='host',
+            default='0.0.0.0',
+            help='host ip on which the service is running',
+        )
+        test.add_argument(
+            '-P', '--port', dest='port',
+            default='5000',
+            help='port on which the service is running'
+        )
 
         sub1 = commands.add_parser(
             'sub1',
@@ -138,9 +161,16 @@ class PytorchCLI(object):
             log.setLevel(logging.ERROR)
 
     def start(self, args):
-        #from pytorch_server.pytorch_server import app
         from .pytorch_server import app
-        app.run(host="0.0.0.0", debug=True)
+        #app.run(host="0.0.0.0", debug=True)
+        app.run(host=args.host, port=args.port, debug=args.debug)
+
+    def test(self, args):
+        import unittest
+        loader = unittest.TestLoader()
+        suite = loader.discover('./pytorch_server/tests')
+        runner = unittest.TextTestRunner()
+        runner.run(suite)
 
     def cuda_is_available(self, args):
         print(cuda_is_available())
