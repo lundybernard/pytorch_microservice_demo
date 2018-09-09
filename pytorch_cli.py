@@ -166,8 +166,8 @@ class PytorchCLI(object):
             log.setLevel(logging.ERROR)
 
     def start(self, args):
-        from pytorch_server.pytorch_server import app
-        app.run(host=args.host, port=args.port, debug=args.debug)
+        from pytorch_server.pytorch_server import start_server
+        start_server(host=args.host, port=args.port, debug=args.debug)
 
     def test(self, args):
         import unittest

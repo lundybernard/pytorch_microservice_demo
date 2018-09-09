@@ -67,7 +67,7 @@ pytest functional_tests/service_test.py
 to validate the docker container works properly, and docker-compose works
 
 #### Manual Test
-Run the container with docker-compose and test it with service_testf
+Run the container with docker-compose and test it with service_test
 
 ```
 docker-compose build
@@ -80,8 +80,8 @@ container_test will run docker-compose before each test case,
 and execute the test against the running container
 
 ```
-python -m unittest integraiton_tests/container_test.py
-pytest integraiton_tests/container_test.py
+python -m unittest container_tests/container_test.py
+pytest container_tests/container_test.py
 ```
 
 

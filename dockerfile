@@ -1,11 +1,12 @@
 FROM nvidia/cuda:9.1-cudnn7-devel-ubuntu16.04
 
-# Install conda
+# Update OS
 RUN apt-get update && apt-get install -y --no-install-recommends \
          curl \
          &&\
      rm -rf /var/lib/apt/lists/*
 
+# Install Conda
 RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
      chmod +x ~/miniconda.sh && \
      ~/miniconda.sh -b -p /opt/conda && \
@@ -26,6 +27,6 @@ RUN pip install -r requirements.txt
 # Tests must work without cuda, or be disabled when cuda is unavailable.
 RUN python -m unittest discover pytorch_server.tests -p '*_test.py'
 
-RUN python setup.py install
+RUN python setup.py develop
 #CMD ["python", "pytorch_server/pytorch_server.py"]
 CMD ["pytorch_server", "start"]

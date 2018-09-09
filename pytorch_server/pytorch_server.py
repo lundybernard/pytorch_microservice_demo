@@ -32,5 +32,5 @@ def cuda_is_available_api():
     return cuda_is_available()
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+def start_server(host='0.0.0.0', port='5000', debug=True):
+    app.run(host=host, port=port, debug=debug)

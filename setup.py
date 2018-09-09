@@ -38,7 +38,6 @@ setup(
     # entry points, to generate executables in python/bin/
     entry_points={
         "console_scripts":
-            #['pytorch_server = pytorch_server.pytorch_cli:PytorchCLI']
             ['pytorch_server = pytorch_cli:PytorchCLI']
     },
 
