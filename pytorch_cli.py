@@ -2,7 +2,7 @@ import argparse
 import logging
 from logging.config import dictConfig
 
-from .services import cuda_is_available
+from pytorch_server.services import cuda_is_available
 
 
 # === LOGGING === #
@@ -51,9 +51,10 @@ class PytorchCLI(object):
 
     def __init__(self):
         p = argparse.ArgumentParser(
-            description='Utility for executing various IPcenter tasks',
-            usage='ipcenterutil.py [<args>] <command>'
+            description='Utility for executing various pytorch_server tasks',
+            usage='pytorch_server [<args>] <command>'
         )
+        p.set_defaults(func=p.print_help)
 
         p.add_argument(
             '-v', '--verbose',
@@ -102,7 +103,6 @@ class PytorchCLI(object):
         start.add_argument(
             '-H', '--host', dest='host',
             default='0.0.0.0',
-            #required=True,
             help='host ip on which the service will be made available',
         )
         start.add_argument(
@@ -148,11 +148,16 @@ class PytorchCLI(object):
             help='tell me what arg1 does',
         )
 
+        # Execute
         # get only the first command in args
         args = p.parse_args()
         self.set_log_level(args)
         # execute function set for parsed command
+        if not hasattr(self, args.func.__name__):
+            p.print_help()
+            exit(1)
         args.func(args)
+        exit(0)
 
     def set_log_level(self, args):
         if args.loglevel:
@@ -161,14 +166,13 @@ class PytorchCLI(object):
             log.setLevel(logging.ERROR)
 
     def start(self, args):
-        from .pytorch_server import app
-        #app.run(host="0.0.0.0", debug=True)
+        from pytorch_server.pytorch_server import app
         app.run(host=args.host, port=args.port, debug=args.debug)
 
     def test(self, args):
         import unittest
         loader = unittest.TestLoader()
-        suite = loader.discover('./pytorch_server/tests')
+        suite = loader.discover('functional_tests', pattern='*_test.py')
         runner = unittest.TextTestRunner()
         runner.run(suite)
 
