@@ -3,7 +3,8 @@ import time
 
 from container_tests.docker_compose_fixture import DockerCompose
 
-from container_tests.service_test import CommonAPITest
+#from container_tests.service_test import CommonAPITest
+from pytorch_server.tests.common_api_tests import CommonAPITest
 
 
 class DockerComposeFunctionalTests(TestCase, CommonAPITest):
