@@ -1,7 +1,7 @@
 # pytorch_microservice_demo
 demonstrate a dockerized microservice that uses pytorch with CUDA acceleration
 
-[![Build Status](https://travis-ci.org/lundybernard/docker-compose-integration-tests.svg?branch=master)](https://travis-ci.org/lundybernard/pytorch_microservice_demo)
+[![Build Status](https://travis-ci.org/lundybernard/pytorch_microservice_demo.svg?branch=master)](https://travis-ci.org/lundybernard/pytorch_microservice_demo)
 
 ## Requirements
 ### System
