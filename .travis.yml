@@ -10,6 +10,6 @@ python:
 
 install:
     - pip install -q docker-compose
-    - pip install -rq requirements.txt
+    - pip install -q -r requirements.txt
 
 script: pytest pytorch_server/
