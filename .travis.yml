@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+language: python
+
+python:
+  - '3.5'
+  - '3.6'
+
+install:
+    - pip install requests
+    - pip install docker-compose
+
+script: pytest -v --log-level DEBUG pytorch_server/
