@@ -50,7 +50,7 @@ setup(
 
     #
     # license="LICENSE.txt",
-    description="utilities for automating ipcenter tasks",
+    description="utilities for automating pytorch_server tasks",
 
     long_description=long_description,
 
